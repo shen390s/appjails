@@ -1,0 +1,4 @@
+INCLUDE options/options.makejail
+INCLUDE options/volumes.makejail
+
+CMD pw useradd -n rshen -u 1116 -g 0 -d /home/rshen  -m
