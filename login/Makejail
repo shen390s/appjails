@@ -1,1 +1,1 @@
-FROM --entrypoint gh+shen390s/appjails/login  login
+FROM --entrypoint gh+shen390s/appjails  login
