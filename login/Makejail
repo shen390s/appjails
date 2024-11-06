@@ -1,1 +1,1 @@
-FROM --entrypoint cmd+"git clone https://github.com/shen390s/appjails && cat appjails/login/.ajspec"  login
+FROM --entrypoint cmd+"git clone https://github.com/shen390s/appjails && cat appjails/login/.ajspec && rm -Rf appjails"  login
