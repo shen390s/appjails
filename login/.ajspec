@@ -1,0 +1,7 @@
+tags: 14.1
+14.1.arch: amd64
+14.1.name: "login"
+14.1.timestamp.amd64: 1730882890
+14.1.sum.amd64: e7a523699fd4dcadba3d8f3d8785f7b9ec8a3d4de95c4a22ff1777def25362a7
+14.1.size.amd64: 859392
+14.1.source.amd64: "file:///data/repos/14.1-amd64-image.appjail"
