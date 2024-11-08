@@ -1,0 +1,21 @@
+options:
+  - virtualnet: 'ajnet:login'
+  - bridge: "login iface:em0"
+  - mount_devfs:
+  - devfs_ruleset: 10
+  - dhcp: sb_myjail
+
+services:
+  gitea:
+    makejail: cmd+"git clone https://github.com/shen390s/appjails && cat appjails/login/.ajspec && rm -Rf appjails"
+    name: login
+    arguments:
+      - login_tag: 14.1
+    volumes:
+      - home: home
+
+volumes:
+  home: 
+    device: /data/home
+    type: <volumefs>
+  
