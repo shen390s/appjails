@@ -1,6 +1,0 @@
-ARG login_tag=14.1
-
-FROM --entrypoint cmd+"git clone https://github.com/shen390s/appjails && cat appjails/login/.ajspec && rm -Rf appjails"  login:${login_tag}
-
-SYSRC sshd_enable=YES
-SERVICE sshd start
