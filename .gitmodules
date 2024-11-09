@@ -1,3 +1,0 @@
-[submodule "login"]
-	path = login
-	url = git@github.com:shen390s/login.git
