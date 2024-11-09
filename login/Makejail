@@ -3,5 +3,7 @@ ARG login_tag=14.1
 
 FROM --ajspec login/.ajspec --entrypoint gh+shen390s/appjails login:${login_tag}
 
+SYSRC ifconfig_sb_login="up 192.168.1.20/24"
 SYSRC sshd_enable=YES
+SERVICE netif restart
 SERVICE sshd start
