@@ -1,0 +1,6 @@
+ARG login_tag=14.1
+
+FROM --ajspec login/.ajspec --entrypoint gh+shen390s/appjails login:${login_tag}
+
+SYSRC sshd_enable=YES
+SERVICE sshd start
