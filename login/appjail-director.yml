@@ -1,5 +1,5 @@
 options:
-  - virtualnet: 'ajnet:login'
+  - virtualnet: 'dns:login'
   - bridge: "login iface:em0"
   - mount_devfs:
   - devfs_ruleset: 10
