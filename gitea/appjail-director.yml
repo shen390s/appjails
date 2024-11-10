@@ -1,9 +1,6 @@
 options:
   - virtualnet: 'dns:gitea default'
-  - bridge: "gitea iface:em0"
   - mount_devfs:
-#  - devfs_ruleset: 10
-#  - ip4: "sb_gitea|192.168.1.21/24" 
 
 services:
   gitea:
