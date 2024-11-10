@@ -1,0 +1,35 @@
+options:
+  - virtualnet: 'dns:gitea default'
+  - bridge: "gitea iface:em0"
+  - mount_devfs:
+#  - devfs_ruleset: 10
+#  - ip4: "sb_gitea|192.168.1.21/24" 
+
+services:
+  gitea:
+    makejail: gh+AppJail-makejails/gitea
+    name: gitea
+    options:
+      - nat:
+      - expose: 3000
+      - expose: "2022:22"
+    arguments:
+      - gitea_tag: 14.1
+    environment:
+      - GITEA__DEFAULT__APP_NAME: "Welcome to my git server"
+      - GITEA__SERVER__DOMAIN: "vcs.shenrs.eu"
+    volumes:
+      - gitea-db: gitea-db
+      - gitea-log: gitea-log
+      - gitea-git: gitea-git
+
+volumes:
+  gitea-db: 
+    device: /data/gitea/db
+    type: <volumefs>
+  gitea-log:
+    device: /data/gitea/log
+    type: <volumefs>
+  gitea-git:
+    device: /data/gitea/git
+    type: <volumefs>
