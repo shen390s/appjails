@@ -1,9 +1,9 @@
 options:
-  - virtualnet: 'dns:haproxy'
+  - virtualnet: 'ajnet:haproxy default'
   - bridge: "haproxy iface:em0"
   - mount_devfs:
-#  - devfs_ruleset: 10
-#  - ip4: "sb_haproxy|192.168.1.21/24" 
+  - devfs_ruleset: 10
+  - dhcp: sb_haproxy
 
 services:
   haproxy:
@@ -11,7 +11,7 @@ services:
     name: haproxy
     arguments:
       - haproxy_tag: 14.1
-      - haproxy_ip: "192.168.1.20/24"
+      - haproxy_hwaddr: 00:50:69:6f:74:72
     volumes:
       - conf: conf
 
