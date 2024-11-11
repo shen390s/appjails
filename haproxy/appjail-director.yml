@@ -1,0 +1,22 @@
+options:
+  - virtualnet: 'dns:haproxy'
+  - bridge: "haproxy iface:em0"
+  - mount_devfs:
+#  - devfs_ruleset: 10
+#  - ip4: "sb_haproxy|192.168.1.21/24" 
+
+services:
+  haproxy:
+    makejail: Makejail
+    name: haproxy
+    arguments:
+      - haproxy_tag: 14.1
+      - haproxy_ip: "192.168.1.20/24"
+    volumes:
+      - conf: conf
+
+volumes:
+  conf: 
+    device: /data/haproxy/conf
+    type: <volumefs>
+  
