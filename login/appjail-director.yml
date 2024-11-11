@@ -1,0 +1,22 @@
+options:
+  - virtualnet: 'dns:login'
+  - bridge: "login iface:em0"
+  - mount_devfs:
+#  - devfs_ruleset: 10
+#  - ip4: "sb_login|192.168.1.21/24" 
+
+services:
+  login:
+    makejail: Makejail
+    name: login
+    arguments:
+      - login_tag: 14.1
+      - login_ip: "192.168.1.20/24"
+    volumes:
+      - home: home
+
+volumes:
+  home: 
+    device: /data/home
+    type: <volumefs>
+  
