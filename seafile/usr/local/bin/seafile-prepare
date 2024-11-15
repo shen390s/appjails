@@ -1,27 +1,54 @@
 #!/bin/sh
-#prepare seafile
 
-# FIXME
+HAIWEN=/usr/local/www/haiwen
+SEAFILE_OK=$HAIWEN/.seafile.ok
 
-chown -Rf seafile:seafile /usr/local/www/haiwen
+fix_seahub() {
+    cf=$HAIWEN/conf/seahub_setting.py
 
-cd /usr/local/www/haiwen/seafile-server
-./setup-seafile-mysql.sh \
-    auto \
-    -n seafile \
-    -i ${SEAFILE_DOMAIN} \
-    -e 0 -u seafile -w ${SEAFILE_PASS} -r ${SEAFILE_MYSQL_PASS}
+    if cat $cf |sed -e 's/#.*$//g' |grep FILE_SERVER_ROOT 2>/dev/null; then
+	:
+    else
+	line=$(cat $cf |grep -n SERVICE_URL |awk -F: '{print $1}')
+	line=$(expr $line + 1)
+	data=$(cat $cf |grep -n SERVICE_URL |awk -F= '{print $2}' |sed -e 's/"//g' |sed -e 's/ //g')
+	ed $cf <<EOF
+${line}i
+FILE_SERVER_ROOT = "$data/seafhttp"
+.
+w
+q
+EOF
+    fi
+}
 
-if [ ! -d /tmp/seahub_cache ]; then
-   mkdir -p /tmp/seahub_cache
+prepare_seafile() {
+    chown -Rf seafile:seafile $HAIWEN
+
+    cd $HAIWEN/seafile-server
+    ./setup-seafile-mysql.sh \
+	auto \
+	-n seafile \
+	-i ${SEAFILE_DOMAIN} \
+	-e 0 -u seafile -w ${SEAFILE_PASS} -r ${SEAFILE_MYSQL_PASS}
+
+    if [ ! -d /tmp/seahub_cache ]; then
+	mkdir -p /tmp/seahub_cache
+    fi
+
+    chown -Rf seafile:seafile /tmp/seahub_cache
+
+    fix_seahub
+    
+    sysrc seafile_enable=YES
+    sysrc seahub_enable=YES
+
+    service seafile start
+    service seahub start
+
+    touch $SEAFILE_OK
+}
+
+if [ ! -f $SEAFILE_OK ]; then
+    prepare_seafile
 fi
-
-chown -Rf seafile:seafile /tmp/seahub_cache
-
-sysrc seafile_enable=YES
-sysrc seahub_enable=YES
-
-service seafile start
-service seahub start
-
-

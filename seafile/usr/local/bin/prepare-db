@@ -1,5 +1,7 @@
 #!/bin/sh
 
+DB_OK=/var/db/mysql/.db_ok
+
 gen_update_dbpass() {
     local _pass
 
@@ -30,11 +32,11 @@ prepare-db() {
    fi
 
    mysql -u root --password="$mysql_root_pass" --connect-expired-password < /tmp/update_db.sql 
+
+   touch $DB_OK
 }
 
-env >/tmp/environ.txt
-
-if [ ! -d /var/db/mysql/mysql/. ]; then
+if [ ! -f $DB_OK ]; then
    prepare-db
 fi
 
