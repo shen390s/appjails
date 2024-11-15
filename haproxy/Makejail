@@ -11,5 +11,6 @@ RUN update_haproxy_conf
 
 SYSRC ifconfig_sb_haproxy+="ether ${haproxy_hwaddr} up ${haproxy_ip}"
 SYSRC haproxy_enable=YES
+SYSRC haproxy_flags='-q -f /usr/local/etc/haproxy.conf -p /var/run/haproxy.pid  -D'
 SERVICE netif restart sb_haproxy
 # SERVICE haproxy start

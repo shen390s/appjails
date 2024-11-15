@@ -1,0 +1,26 @@
+INCLUDE options/options.makejail
+
+ARG seafile_tag=14.1
+
+FROM --ajspec seafile/.ajspec --entrypoint gh+shen390s/appjails seafile:${seafile_tag}
+
+COPY usr
+
+SYSRC mysql_enable=YES
+SYSRC mysql_optfile="/usr/local/etc/mysql/my.cnf"
+SYSRC mysql_dbdir=/var/db/mysql
+SYSRC mysql_cnfdir=/usr/local/etc/mysql
+
+RUN prepare-db
+
+RUN seafile-prepare
+
+# SERVICE mysql start
+
+SYSRC seafile_enable=YES
+
+SERVICE seafile start
+
+SYSRC seahub_enable=YES
+
+# SERVICE seahub start

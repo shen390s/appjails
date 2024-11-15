@@ -1,0 +1,40 @@
+#!/bin/sh
+
+gen_update_dbpass() {
+    local _pass
+
+    _pass="$1"
+    cat <<EOF
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '$_pass';
+FLUSH PRIVILEGES;
+EOF
+}
+
+prepare-db() {
+   sysrc mysql_enable=YES
+   sysrc mysql_optfile=/usr/local/etc/mysql/mysql.cnf
+   sysrc mysql_dbdir=/var/db/mysql
+   sysrc mysql_confdir=/usr/local/etc/mysql
+
+   mkdir -p /var/db/mysql_tmpdir 
+   chown -Rf mysql:mysql /var/db/mysql_tmpdir
+
+   service mysql-server start
+
+   gen_update_dbpass "$SEAFILE_MYSQL_PASS" >/tmp/update_db.sql
+
+   if [ -f /root/.mysql_secret ]; then
+      mysql_root_pass=$(cat /root/.mysql_secret| sed -e 's/^#.*$//g' -e '/^$/d' | head -n 1)
+   else
+      mysql_root_pass=""
+   fi
+
+   mysql -u root --password="$mysql_root_pass" --connect-expired-password < /tmp/update_db.sql 
+}
+
+env >/tmp/environ.txt
+
+if [ ! -d /var/db/mysql/mysql/. ]; then
+   prepare-db
+fi
+

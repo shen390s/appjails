@@ -1,0 +1,27 @@
+#!/bin/sh
+#prepare seafile
+
+# FIXME
+
+chown -Rf seafile:seafile /usr/local/www/haiwen
+
+cd /usr/local/www/haiwen/seafile-server
+./setup-seafile-mysql.sh \
+    auto \
+    -n seafile \
+    -i ${SEAFILE_DOMAIN} \
+    -e 0 -u seafile -w ${SEAFILE_PASS} -r ${SEAFILE_MYSQL_PASS}
+
+if [ ! -d /tmp/seahub_cache ]; then
+   mkdir -p /tmp/seahub_cache
+fi
+
+chown -Rf seafile:seafile /tmp/seahub_cache
+
+sysrc seafile_enable=YES
+sysrc seahub_enable=YES
+
+service seafile start
+service seahub start
+
+

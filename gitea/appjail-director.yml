@@ -1,15 +1,15 @@
 options:
-  - virtualnet: 'dns:gitea default'
+  - virtualnet: ':gitea default'
   - mount_devfs:
 
 services:
   gitea:
     makejail: gh+AppJail-makejails/gitea
     name: gitea
-    options:
-      - nat:
-      - expose: 3000
-      - expose: "2022:22"
+#    options:
+#      - nat:
+#      - expose: 3000
+#      - expose: "2022:22"
     arguments:
       - gitea_tag: 14.1
     environment:

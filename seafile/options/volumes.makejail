@@ -1,0 +1,2 @@
+OPTION volume=seafile-root mountpoint:/usr/local/www/haiwen
+OPTION volume=mysql mountpoint:/var/db/mysql owner:88 group:88

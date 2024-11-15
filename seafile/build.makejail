@@ -1,0 +1,11 @@
+INCLUDE options/options.makejail
+INCLUDE options/volumes.makejail
+
+RUN pkg bootstrap -y 
+RUN pkg update
+
+RUN pkg install -y mysql80-server \
+   mysql80-client \
+   py311-pymysql \
+   seafile-server \
+   www/seahub

@@ -1,0 +1,29 @@
+options:
+  - virtualnet: 'ajnet:seafile default'
+  - bridge: "seafile iface:em0"
+  - mount_devfs:
+  - devfs_ruleset: 10
+  - dhcp: sb_seafile
+
+services:
+  seafile:
+    makejail: Makejail
+    name: seafile
+    arguments:
+      - seafile_tag: 14.1
+    environment:
+      - SEAFILE_MYSQL_PASS: !ENV '${SEAFILE_MYSQL_PASS}'
+      - SEAFILE_DOMAIN: !ENV '${SEAFILE_DOMAIN}'
+      - SEAFILE_PASS: !ENV '${SEAFILE_PASS}'
+    volumes:
+      - seafile-root: seafile-root
+      - mysql: mysql
+
+volumes:
+  seafile-root: 
+    device: /data/seafile/seafile
+    type: <volumefs>
+  mysql:
+    device: /data/seafile/mysql
+    type: <volumefs>
+  

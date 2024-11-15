@@ -1,0 +1,5 @@
+JAIL_NETWORK=ajnet
+JAIL_VOLUME_ROOT=/data
+SEAFILE_MYSQL_PASS=seafileaaa123
+SEAFILE_DOMAIN=seafile.hmjh.com
+SEAFILE_PASS=seafile
