@@ -1,0 +1,12 @@
+INCLUDE options/options.makejail
+
+ARG zerotier_tag=14.1
+
+FROM --ajspec zerotier/.ajspec --entrypoint gh+shen390s/appjails zerotier:${zerotier_tag}
+
+COPY usr
+
+RUN join-net
+
+SYSRC zerotier_enable=YES
+SERVICE zerotier start

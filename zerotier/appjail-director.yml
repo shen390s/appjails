@@ -1,0 +1,22 @@
+options:
+  - virtualnet: 'dns:zerotier default'
+  - mount_devfs:
+  - devfs_ruleset: 10
+
+services:
+  zerotier:
+    makejail: Makejail
+    name: zerotier
+    options:
+      - nat:
+    environment:
+      - ZEROTIER_NET: !ENV '${ZEROTIER_NET}'
+    arguments:
+      - zerotier_tag: 14.1
+    volumes:
+      - zerotier-one-db: zerotier-one-db
+
+volumes:
+  zerotier-one-db:
+    device: /data/zerotier/db
+    type: <volumefs>  
