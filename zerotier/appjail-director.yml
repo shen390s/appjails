@@ -1,5 +1,5 @@
 options:
-  - virtualnet: 'dns:zerotier default'
+  - virtualnet: 'ajnet:zerotier default'
   - mount_devfs:
   - devfs_ruleset: 10
 

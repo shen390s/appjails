@@ -5,3 +5,4 @@ tags: 14.1
 14.1.sum.amd64: f1f5b6cf4b9603d9755ee739c258b3eb916f23eb774bb2ca2ccd404a074794df
 14.1.size.amd64: 20770060
 14.1.source.amd64: "file:///data/repo/zerotier/14.1-amd64-image.appjail"
+14.1.source.amd64+: "file:///data/repo/zerotier/14.1-amd64-image.appjail"
