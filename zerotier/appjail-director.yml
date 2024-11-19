@@ -1,14 +1,14 @@
 options:
-  - virtualnet: 'dns:zerotier default'
+  - bridge: "zerotier iface:em0"
   - mount_devfs:
   - devfs_ruleset: 10
+  - dhcp: sb_zerotier
+
 
 services:
   zerotier:
     makejail: Makejail
     name: zerotier
-    options:
-      - nat:
     environment:
       - ZEROTIER_NET: !ENV '${ZEROTIER_NET}'
     arguments:
