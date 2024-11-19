@@ -1,0 +1,12 @@
+INCLUDE options/options.makejail
+
+ARG tailscale_tag=14.1
+ARG tailscale_hwaddr=02:0b:43:9d:7c:0b
+
+FROM --ajspec tailscale/.ajspec --entrypoint gh+shen390s/appjails tailscale:${tailscale_tag}
+
+SYSRC gateway_enable=YES
+SYSRC ifconfig_sb_tailscale+="ether 02:0b:43:9d:7c:0b up" 
+SYSRC tailscaled_enable=YES
+SERVICE tailscaled start
+

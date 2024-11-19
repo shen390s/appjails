@@ -1,0 +1,1 @@
+OPTION volume=tailscale-db mountpoint:/var/db/tailscale owner:0  group:0
