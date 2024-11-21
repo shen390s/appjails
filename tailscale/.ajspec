@@ -1,0 +1,7 @@
+tags: 14.1
+14.1.arch: amd64
+14.1.name: "tailscale"
+14.1.timestamp.amd64: 1732008347
+14.1.sum.amd64: d58f59b27331d20412e79c1ad4922264497fdd2a93f1221f1b089c75126483b2
+14.1.size.amd64: 53168216
+14.1.source.amd64: "file:///data/repo/tailscale/14.1-amd64-image.appjail"

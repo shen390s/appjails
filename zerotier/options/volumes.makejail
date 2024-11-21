@@ -1,0 +1,1 @@
+OPTION volume=zerotier-one-db mountpoint:/var/db/zerotier-one owner:0  group:0

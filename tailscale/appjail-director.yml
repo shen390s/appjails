@@ -1,0 +1,19 @@
+options:
+  - bridge: "tailscale iface:em0"
+  - mount_devfs:
+  - devfs_ruleset: 10
+  - dhcp: sb_tailscale
+
+services:
+  tailscale:
+    makejail: Makejail
+    name: tailscale
+    arguments:
+      - tailscale_tag: 14.1
+    volumes:
+      - tailscale-db: tailscale-db
+
+volumes:
+  tailscale-db:
+    device: /data/tailscale/db
+    type: <volumefs>  
