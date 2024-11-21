@@ -1,0 +1,69 @@
+#!/bin/sh
+
+UPLOAD_HOST="rshen@172.16.1.1"
+UPLOAD_DIR="/data/fsroot/AppJails-images"
+
+makejail () {
+    local _j
+
+    _j="$1"
+    (cd "$_j" && \
+	 sudo appjail makejail \
+	      -f build.makejail \
+	      -j "$_j" \
+	      -o virtualnet="ajnet:$_j default" \
+	      -o nat)
+}
+
+exportjail() {
+    local _j _tag
+
+    _j="$1"
+    _tag="$2"
+
+    if [ "$_tag" ]; then
+	_tag=14.1
+    fi
+    
+    sudo appjail stop "$_j" && \
+	sudo appjail image export -f "$_tag" "$_j" 
+}
+
+uploadjail() {
+    local _j _tag
+
+    _j="$1"
+    _tag="$2"
+
+    (cd /usr/local/appjail/cache/images && tar cf - "$_j/$_tag-amd64-image.appjail") | \
+	ssh $UPLOAD_HOST "cd $UPLOAD_DIR && tar xvf -"
+
+    cp /usr/local/appjail/cache/images/$_j/.ajspec $_j
+}
+
+mk_image() {
+    local _j _tag
+
+    _j="$1"
+    _tag="$2"
+
+    makejail "$_j"  "$_tag" && \
+	exportjail "$_j" "$_tag" && \
+	uploadjail "$_j" "$_tag"
+}
+
+usage() {
+    cat <<EOF
+Usage: mkimage jail [tag]
+EOF
+}
+
+jname="$1"
+tag="$2"
+
+test -z "$jname" && usage
+if [ -z "$tag" ]; then
+    tag="14.1"
+fi
+
+mk_image "$jname" "$tag"
