@@ -56,6 +56,11 @@ mk_image() {
     _j="$1"
     _tag="$2"
 
+    if [ ! -f "$_j"/build.makejail ]; then
+	echo no build.makejail found under $_j
+	exit 2
+    fi
+    
     makejail "$_j"  "$_tag" && \
 	exportjail "$_j" "$_tag" && \
 	uploadjail "$_j" "$_tag"
