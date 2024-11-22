@@ -2,6 +2,7 @@
 
 UPLOAD_HOST="rshen@172.16.1.1"
 UPLOAD_DIR="/data/fsroot/AppJails-images"
+HTTP_URLBASE="http://172.16.1.29/AppJail-images"
 
 makejail () {
     local _j
@@ -36,9 +37,17 @@ uploadjail() {
     _tag="$2"
 
     (cd /usr/local/appjail/cache/images && tar cf - "$_j/$_tag-amd64-image.appjail") | \
-	ssh $UPLOAD_HOST "cd $UPLOAD_DIR && tar xvf -"
+	ssh $UPLOAD_HOST "sudo tar -C $UPLOAD_DIR xvf -"
 
     cp /usr/local/appjail/cache/images/$_j/.ajspec $_j
+
+    sudo appjail image metadata set -t "$_tag" \
+	 -f $_j/.ajspec source:amd64+="$HTTP_URLBASE/$_j/$_tag-amd64-image.appjail"
+
+    git add $_j/.ajspec
+    git commit -m "update ajspec for $_j"
+
+    git push
 }
 
 mk_image() {
@@ -54,14 +63,55 @@ mk_image() {
 
 usage() {
     cat <<EOF
-Usage: mkimage jail [tag]
+Usage: mkimage [-f config] jail [tag]
 EOF
 }
 
-jname="$1"
-tag="$2"
 
-test -z "$jname" && usage
+jname=""
+tag=""
+conf=""
+
+args=$(getopt "hf:" $*)
+
+if [ $? -ne 0 ]; then
+    usage
+    exit 1
+fi
+
+set -- $args
+
+while [ $# -gt 0 ]; do
+    case "$1" in
+	-f)
+	    conf="$2"
+	    shift
+	    ;;
+	--)
+	    shift
+	    break
+    esac
+done
+
+if [ $# -gt 0 ]; then
+    jname="$1"
+    shift
+fi
+
+if [ $# -gt 0 ]; then
+    tag="$1"
+    shift
+fi
+
+if [ -z "$jname" ]; then
+    usage
+    exit 1
+fi
+
+if [ ! -z "$conf" -a -r "$conf" ]; then
+    . $conf
+fi
+
 if [ -z "$tag" ]; then
     tag="14.1"
 fi
