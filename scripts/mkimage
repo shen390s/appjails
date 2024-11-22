@@ -18,7 +18,7 @@ makejail () {
     local _j _xargs
 
     _j="$1"
-    _xargs="-o virtualnet=\"ajnet:$_j default\" -o nat "
+    _xargs="-o virtualnet='ajnet:$_j default' -o nat "
     if inherit_ip4 "$_j"; then
 	_xargs=""
     fi
