@@ -27,7 +27,7 @@ exportjail() {
     fi
     
     sudo appjail stop "$_j" && \
-	sudo appjail image export -f "$_tag" "$_j" 
+	sudo appjail image export -f -t "$_tag" "$_j" 
 }
 
 uploadjail() {
