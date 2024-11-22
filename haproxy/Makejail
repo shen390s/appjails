@@ -5,9 +5,12 @@ ARG haproxy_tag=14.1
 FROM --ajspec haproxy/.ajspec --entrypoint gh+shen390s/appjails haproxy:${haproxy_tag}
 
 COPY usr
-RAW update_haproxy_conf
 
 SYSRC haproxy_enable=YES
 SYSRC haproxy_config='/usr/local/etc/haproxy/haproxy.conf'
 SYSRC haproxy_flags='-q -f /usr/local/etc/haproxy/haproxy.conf -p /var/run/haproxy.pid -D '
 SERVICE haproxy start
+
+STAGE create
+
+CMD update_haproxy_conf
