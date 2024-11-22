@@ -1,6 +1,6 @@
 #!/bin/sh
 
-UPLOAD_HOST="rshen@172.16.1.1"
+UPLOAD_HOST="rshen@172.16.1.29"
 UPLOAD_DIR="/data/fsroot/AppJails-images"
 HTTP_URLBASE="http://172.16.1.29/AppJail-images"
 
