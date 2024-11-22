@@ -1,17 +1,16 @@
 options:
   - virtualnet: 'ajnet:haproxy default'
-  - bridge: "haproxy iface:em0"
-  - mount_devfs:
-  - devfs_ruleset: 10
-  - dhcp: sb_haproxy
 
 services:
   haproxy:
     makejail: Makejail
     name: haproxy
+    options:
+      - nat:
+      - expose: 80
+      - expose: 443
     arguments:
       - haproxy_tag: 14.1
-      - haproxy_hwaddr: 00:50:69:6f:74:72
     volumes:
       - conf: conf
 
