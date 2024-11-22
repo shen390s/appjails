@@ -1,7 +1,7 @@
 tags: 14.1
 14.1.arch: amd64
 14.1.name: "haproxy"
-14.1.timestamp.amd64: 1731308958
-14.1.sum.amd64: 1495c6f5420366d42fe2551fc51e52fc7e5dde64851f4f06047df3e9109b3a3d
-14.1.size.amd64: 26366088
-14.1.source.amd64: "file:///data/repos/haproxy/14.1-amd64-image.appjail"
+14.1.timestamp.amd64: 1732245100
+14.1.sum.amd64: dfde5e50aed6e2682a6db0626893d35dc821c4be390956b9e1acb191b355a02f
+14.1.size.amd64: 26322108
+14.1.source.amd64: "http://172.16.1.29/AppJail-images/haproxy/14.1-amd64-image.appjail"
