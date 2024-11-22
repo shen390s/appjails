@@ -4,16 +4,29 @@ UPLOAD_HOST="rshen@172.16.1.29"
 UPLOAD_DIR="/data/fsroot/AppJail-images"
 HTTP_URLBASE="http://172.16.1.29/AppJail-images"
 
-makejail () {
+inherit_ip4() {
     local _j
 
     _j="$1"
+
+    cat $_j/options/options.makejail | \
+	sed -e 's/#.*$//g' | \
+	grep -E '^OPTION[ ]+ip4_inherit'
+}
+
+makejail () {
+    local _j _xargs
+
+    _j="$1"
+    _xargs="-o virtualnet=\"ajnet:$_j default\" -o nat "
+    if inherit_ip4 "$_j"; then
+	_xargs=""
+    fi
+    
     (cd "$_j" && \
 	 sudo appjail makejail \
 	      -f build.makejail \
-	      -j "$_j" \
-	      -o virtualnet="ajnet:$_j default" \
-	      -o nat)
+	      -j "$_j" $_xargs)
 }
 
 exportjail() {

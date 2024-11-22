@@ -1,7 +1,6 @@
 INCLUDE options/options.makejail
 
 ARG haproxy_tag=14.1
-ARG haproxy_hwaddr=00:50:69:6f:74:72
 
 FROM --ajspec haproxy/.ajspec --entrypoint gh+shen390s/appjails haproxy:${haproxy_tag}
 
