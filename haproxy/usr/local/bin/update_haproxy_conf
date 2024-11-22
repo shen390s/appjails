@@ -1,6 +1,22 @@
 #!/bin/sh
 set -e
 
-if [ -f /conf/haproxy.conf ]; then
-   cp /conf/haproxy.conf /usr/local/etc/haproxy.conf
+mk_haproxy_conf() {
+    cat <<EOF
+defaults
+  mode http
+  timeout client 10s
+  timeout connect 5s
+  timeout server 10s
+  timeout http-request 10s
+
+frontend http
+  bind :80
+   
+EOF
+}
+
+if [ ! -f /usr/local/etc/haproxy/haproxy.conf ]; then
+    mkdir -p /usr/local/etc/haproxy
+    mk_haproxy_conf > /usr/local/etc/haproxy/haproxy.conf
 fi

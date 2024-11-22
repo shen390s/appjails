@@ -1,1 +1,1 @@
-OPTION volume=conf mountpoint:/conf
+OPTION volume=conf mountpoint:/usr/local/etc/haproxy/

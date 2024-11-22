@@ -17,6 +17,6 @@ services:
 
 volumes:
   conf: 
-    device: /data/haproxy/conf
+    device: /data/jails/haproxy/conf
     type: <volumefs>
   
