@@ -2,4 +2,6 @@ OPTION resolv_conf
 OPTION tzdata
 OPTION overwrite=force
 OPTION start
+OPTION alias
+OPTION ip4_inherit
 

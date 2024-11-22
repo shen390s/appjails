@@ -1,5 +1,4 @@
 INCLUDE options/options.makejail
-# INCLUDE options/volumes.makejail
 
 ARG haproxy_tag=14.1
 ARG haproxy_hwaddr=00:50:69:6f:74:72
@@ -9,9 +8,7 @@ FROM --ajspec haproxy/.ajspec --entrypoint gh+shen390s/appjails haproxy:${haprox
 COPY usr
 RUN update_haproxy_conf
 
-SYSRC ifconfig_sb_haproxy+="ether ${haproxy_hwaddr} up ${haproxy_ip}"
 SYSRC haproxy_enable=YES
 SYSRC haproxy_config='/usr/local/etc/haproxy/haproxy.conf'
 SYSRC haproxy_flags='-q -f /usr/local/etc/haproxy/haproxy.conf -p /var/run/haproxy.pid -D '
-SERVICE netif restart sb_haproxy
 SERVICE haproxy start
