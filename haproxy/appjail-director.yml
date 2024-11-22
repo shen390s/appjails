@@ -1,5 +1,5 @@
 options:
-  - virtualnet: 'ajnet:haproxy default'
+  - virtualnet: 'ajnet:haproxy'
 
 services:
   haproxy:
