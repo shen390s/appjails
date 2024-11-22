@@ -37,7 +37,7 @@ uploadjail() {
     _tag="$2"
 
     (cd /usr/local/appjail/cache/images && tar cf - "$_j/$_tag-amd64-image.appjail") | \
-	ssh $UPLOAD_HOST "sudo tar -C $UPLOAD_DIR xvf -"
+	ssh $UPLOAD_HOST "sudo tar -xvf -C $UPLOAD_DIR  -"
 
     cp /usr/local/appjail/cache/images/$_j/.ajspec $_j
 
