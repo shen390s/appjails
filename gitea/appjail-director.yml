@@ -22,11 +22,11 @@ services:
 
 volumes:
   gitea-db: 
-    device: /data/gitea/db
+    device: /data/jails/gitea/db
     type: <volumefs>
   gitea-log:
-    device: /data/gitea/log
+    device: /data/jails/gitea/log
     type: <volumefs>
   gitea-git:
-    device: /data/gitea/git
+    device: /data/jails/gitea/git
     type: <volumefs>

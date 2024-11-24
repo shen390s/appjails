@@ -21,9 +21,9 @@ services:
 
 volumes:
   seafile-root: 
-    device: /data/seafile/seafile
+    device: /data/jails/seafile/seafile
     type: <volumefs>
   mysql:
-    device: /data/seafile/mysql
+    device: /data/jails/seafile/mysql
     type: <volumefs>
   

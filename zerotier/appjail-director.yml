@@ -17,5 +17,5 @@ services:
 
 volumes:
   zerotier-one-db:
-    device: /data/zerotier/db
+    device: /data/jails/zerotier/db
     type: <volumefs>  

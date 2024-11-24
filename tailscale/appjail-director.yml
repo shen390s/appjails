@@ -15,5 +15,5 @@ services:
 
 volumes:
   tailscale-db:
-    device: /data/tailscale/db
+    device: /data/jails/tailscale/db
     type: <volumefs>  
