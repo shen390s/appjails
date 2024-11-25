@@ -12,3 +12,10 @@ services:
     arguments:
       - ttyd_tag: 14.1
 
+    volumes:
+      - user-home: user-home
+
+volumes:
+  user-home:
+    device: /data/jails/ttyd/user
+    type: <volumefs>

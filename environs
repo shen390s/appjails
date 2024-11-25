@@ -4,3 +4,5 @@ SEAFILE_MYSQL_PASS=seafileaaa123
 SEAFILE_DOMAIN=seafile.hmjh.com
 SEAFILE_PASS=seafile
 ZEROTIER_NET=b6079f73c665ac0a
+GITEA_APP_NAME="Welcome to my gitea server"
+GITEA_SERVER_DOMAIN="vcs.shenrs.eu"
