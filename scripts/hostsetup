@@ -37,6 +37,8 @@ init_appjail() {
     fi
     
     appjail network add ajnet 192.168.$_tag.0/24
+
+    appjail fetch
 }
 
 install_pkgs
