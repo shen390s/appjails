@@ -1,0 +1,50 @@
+#!/bin/sh
+
+install_pkgs() {
+    pkg install -y git appjail py311-director
+}
+
+enable_gateway() {
+    sysrc gateway_enable=YES
+
+    service routing restart
+}
+
+enable_lockd() {
+    sysrc rpc_lockd_enable=YES
+
+    service lockd restart
+}
+
+enable_pf() {
+    cat >/etc/pf.conf <<EOF
+nat-anchor "appjail-nat/jail/*"
+nat-anchor "appjail-nat/network/*"
+rdr-anchor "appjail-rdr/*"
+EOF
+    
+    sysrc pf_enable=YES
+
+    service pf restart
+}
+
+init_appjail() {
+    local _tag
+
+    _tag=$(ifconfig em0 |grep inet | awk '{print $2}' |awk -F. '{print $NF}')
+    if [ -z "$_tag" ]; then
+	_tag=0
+    fi
+    
+    appjail network add ajnet 192.168.$_tag.0/24
+}
+
+install_pkgs
+
+enable_gateway
+
+enable_lockd
+
+enable_pf
+
+init_appjail
