@@ -1,0 +1,21 @@
+options:
+  - virtualnet: ':ttyd default'
+  - mount_devfs:
+
+services:
+  ttyd:
+    makejail: Makejail
+    name: ttyd
+    options:
+      - nat:
+      - expose: 7681
+    arguments:
+      - ttyd_tag: 14.1
+
+    volumes:
+      - user-home: user-home
+
+volumes:
+  user-home:
+    device: /data/jails/ttyd/user
+    type: <volumefs>
