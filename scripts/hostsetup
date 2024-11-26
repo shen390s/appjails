@@ -41,6 +41,10 @@ init_appjail() {
     appjail fetch
 }
 
+init_dirs() {
+    mkdir -p /data/jails
+}
+
 install_pkgs
 
 enable_gateway
@@ -48,5 +52,7 @@ enable_gateway
 enable_lockd
 
 enable_pf
+
+init_dirs
 
 init_appjail
