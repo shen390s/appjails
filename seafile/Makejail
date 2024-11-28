@@ -19,7 +19,7 @@ SYSRC seafile_datadir=/data/seafile/data
 SYSRC seafile_logdir=/data/seafile/var/logs
 RUN seafile-prepare
 
-# SERVICE mysql start
+SERVICE mysql-server start
 
 SYSRC seafile_enable=YES
 
@@ -27,4 +27,4 @@ SERVICE seafile start
 
 SYSRC seahub_enable=YES
 
-# SERVICE seahub start
+SERVICE seahub start
