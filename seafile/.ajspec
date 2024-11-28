@@ -1,7 +1,7 @@
 tags: 14.1
 14.1.arch: amd64
 14.1.name: "seafile"
-14.1.timestamp.amd64: 1732784992
-14.1.sum.amd64: 1ae522d13c9f9794bda5bd65b1594cfde8e7bfc1c1d8551add95619654d1088a
-14.1.size.amd64: 419226464
+14.1.timestamp.amd64: 1732787599
+14.1.sum.amd64: 1a769c511c6c988427f5ba70eddf4f5547f2790a0777c913ae4608c51705f63d
+14.1.size.amd64: 419625560
 14.1.source.amd64: "http://172.16.1.29/AppJail-images/seafile/14.1-amd64-image.appjail"
