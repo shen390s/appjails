@@ -18,10 +18,8 @@ services:
       - SEAFILE_PASS: !ENV '${SEAFILE_PASS}'
     volumes:
       - mysql: mysql
-      - seafile-ccnet: seafile-ccnet
       - seafile-conf: seafile-conf
-      - seafile-logs: seafile-logs
-      - seafile-pids: seafile-pids
+      - seafile-var: seafile-var
       - seafile-data: seafile-data
       - seahub-data: seahub-data
 
