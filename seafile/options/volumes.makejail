@@ -1,6 +1,4 @@
 OPTION volume=mysql mountpoint:/var/db/mysql owner:88 group:88
-OPTION volume=seafile-conf mountpoint:/data/seafile/conf owner:900 group:900
-OPTION volume=seafile-var  mountpoint:/data/seafile/var owner:900 group:900
-OPTION volume=seafile-data mountpoint:/data/seafile/data owner:900 group:900
+OPTION volume=seafile mountpoint:/data/seafile/seafile owner:900 group:900
 
 

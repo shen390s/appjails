@@ -18,21 +18,13 @@ services:
       - SEAFILE_PASS: !ENV '${SEAFILE_PASS}'
     volumes:
       - mysql: mysql
-      - seafile-conf: seafile-conf
-      - seafile-var: seafile-var
-      - seafile-data: seafile-data
+      - seafile: seafile
 
 volumes:
   mysql:
     device: /data/jails/seafile/mysql
     type: <volumefs>
-  seafile-conf:
-    device: /data/jails/seafile/conf
-    type: <volumefs>
-  seafile-var:
-    device: /data/jails/seafile/var
-    type: <volumefs>
-  seafile-data:
-    device: /data/jails/seafile/data
+  seafile:
+    device: /data/jails/seafile/seafile
     type: <volumefs>
   
