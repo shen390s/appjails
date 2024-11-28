@@ -21,7 +21,6 @@ services:
       - seafile-conf: seafile-conf
       - seafile-var: seafile-var
       - seafile-data: seafile-data
-      - seahub-data: seahub-data
 
 volumes:
   mysql:
