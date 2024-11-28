@@ -1,4 +1,4 @@
 OPTION volume=mysql mountpoint:/var/db/mysql owner:88 group:88
-OPTION volume=seafile mountpoint:/data/seafile/seafile owner:900 group:900
+OPTION volume=seafile mountpoint:/usr/local/www/haiwen owner:900 group:900
 
 

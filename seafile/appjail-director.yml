@@ -26,5 +26,5 @@ volumes:
     type: <volumefs>
   seafile:
     device: /data/jails/seafile/seafile
-    type: <volumefs>
+    type: unionfs
   
