@@ -29,22 +29,13 @@ volumes:
   mysql:
     device: /data/jails/seafile/mysql
     type: <volumefs>
-  seafile-ccnet:
-    device: /data/jails/seafile/ccnet
-    type: <volumefs>
   seafile-conf:
     device: /data/jails/seafile/conf
     type: <volumefs>
-  seafile-logs:
-    device: /data/jails/seafile/logs
-    type: <volumefs>
-  seafile-pids:
-    device: /data/jails/seafile/pids
+  seafile-var:
+    device: /data/jails/seafile/var
     type: <volumefs>
   seafile-data:
     device: /data/jails/seafile/data
-    type: <volumefs>
-  seahub-data:
-    device: /data/jails/seafile/seahub-data
     type: <volumefs>
   

@@ -1,6 +1,7 @@
 #!/bin/sh
 
 HAIWEN=/usr/local/www/haiwen
+SEAHUB_CONF=$HAIWEN/conf/conf/seahub_setting.py
 SEAFILE_OK=$HAIWEN/.seafile.ok
 
 seafile_ok() {
@@ -9,7 +10,7 @@ seafile_ok() {
 	return
     fi
 
-    if [ ! -d $HAIWEN/conf/seahub_setting.py ]; then
+    if [ ! -f $SEAHUB_CONF ]; then
 	false
 	return
     fi
@@ -18,7 +19,7 @@ seafile_ok() {
 }
 
 fix_seahub() {
-    cf=$HAIWEN/conf/seahub_setting.py
+    cf=$SEAHUB_CONF
 
     if cat $cf |sed -e 's/#.*$//g' |grep FILE_SERVER_ROOT 2>/dev/null; then
 	:
