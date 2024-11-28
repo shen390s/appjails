@@ -1,2 +1,9 @@
-OPTION volume=seafile-root mountpoint:/usr/local/www/haiwen
 OPTION volume=mysql mountpoint:/var/db/mysql owner:88 group:88
+OPTION volume=seafile-ccnet mountpoint:/usr/local/www/haiwen/ccnet owner:900 group:900
+OPTION volume=seafile-conf mountpoint:/usr/local/www/haiwen/conf owner:900 group:900
+OPTION volume=seafile-logs mountpoint:/usr/local/www/haiwen/logs owner:900 group:900
+OPTION volume=seafile-pids mountpoint:/usr/local/www/haiwen/pids owner:900 group:900
+OPTION volume=seafile-data mountpoint:/usr/local/www/haiwen/seafile-data owner:900 group:900
+OPTION volume=seahub-data mountpoint:/usr/local/www/haiwen/seahub-data owner:900 group:900
+
+

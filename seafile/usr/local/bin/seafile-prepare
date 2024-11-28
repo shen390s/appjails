@@ -3,6 +3,20 @@
 HAIWEN=/usr/local/www/haiwen
 SEAFILE_OK=$HAIWEN/.seafile.ok
 
+seafile_ok() {
+    if [ ! -f $SEAFILE_OK ]; then
+	false
+	return
+    fi
+
+    if [ ! -d $HAIWEN/conf/seahub_setting.py ]; then
+	false
+	return
+    fi
+
+    true
+}
+
 fix_seahub() {
     cf=$HAIWEN/conf/seahub_setting.py
 
@@ -49,6 +63,8 @@ prepare_seafile() {
     touch $SEAFILE_OK
 }
 
-if [ ! -f $SEAFILE_OK ]; then
+if seafile_ok ; then
+    true
+else
     prepare_seafile
 fi

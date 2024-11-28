@@ -18,14 +18,34 @@ services:
       - SEAFILE_DOMAIN: !ENV '${SEAFILE_DOMAIN}'
       - SEAFILE_PASS: !ENV '${SEAFILE_PASS}'
     volumes:
-      - seafile-root: seafile-root
       - mysql: mysql
+      - seafile-ccnet: seafile-ccnet
+      - seafile-conf: seafile-conf
+      - seafile-logs: seafile-logs
+      - seafile-pids: seafile-pids
+      - seafile-data: seafile-data
+      - seahub-data: seahub-data
 
 volumes:
-  seafile-root: 
-    device: /data/jails/seafile/seafile
-    type: <volumefs>
   mysql:
     device: /data/jails/seafile/mysql
+    type: <volumefs>
+  seafile-ccnet:
+    device: /data/jails/seafile/ccnet
+    type: <volumefs>
+  seafile-conf:
+    device: /data/jails/seafile/conf
+    type: <volumefs>
+  seafile-logs:
+    device: /data/jails/seafile/logs
+    type: <volumefs>
+  seafile-pids:
+    device: /data/jails/seafile/pids
+    type: <volumefs>
+  seafile-data:
+    device: /data/jails/seafile/data
+    type: <volumefs>
+  seahub-data:
+    device: /data/jails/seafile/seahub-data
     type: <volumefs>
   
