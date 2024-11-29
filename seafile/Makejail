@@ -13,10 +13,6 @@ SYSRC mysql_cnfdir=/usr/local/etc/mysql
 
 RUN prepare-db
 
-SYSRC seafile_ccnet=/data/seafile/conf/ccnet
-SYSRC seafile_conf=/data/seafile/conf/conf
-SYSRC seafile_datadir=/data/seafile/data
-SYSRC seafile_logdir=/data/seafile/var/logs
 RUN seafile-prepare
 
 SERVICE mysql-server start

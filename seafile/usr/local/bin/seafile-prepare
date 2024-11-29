@@ -1,15 +1,9 @@
 #!/bin/sh
 
 HAIWEN=/usr/local/www/haiwen
-SEAHUB_CONF=$HAIWEN/conf/conf/seahub_setting.py
-SEAFILE_OK=$HAIWEN/.seafile.ok
+SEAHUB_CONF=$HAIWEN/conf/seahub_setting.py
 
 seafile_ok() {
-    if [ ! -f $SEAFILE_OK ]; then
-	false
-	return
-    fi
-
     if [ ! -f $SEAHUB_CONF ]; then
 	false
 	return
