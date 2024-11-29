@@ -1,7 +1,7 @@
 #!/bin/sh
 
 HAIWEN=/usr/local/www/haiwen
-SEAHUB_CONF=$HAIWEN/conf/seahub_setting.py
+SEAHUB_CONF=$HAIWEN/conf/seahub_settings.py
 
 seafile_ok() {
     if [ ! -f $SEAHUB_CONF ]; then
@@ -54,8 +54,6 @@ prepare_seafile() {
 
     service seafile start
     service seahub start
-
-    touch $SEAFILE_OK
 }
 
 if seafile_ok ; then

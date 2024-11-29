@@ -1,7 +1,14 @@
 #!/bin/sh
 
+wait_db_ready() {
+
+   while [ ! -S /tmp/mysql.sock ]; do
+       sleep 1
+   done
+}
+
 db_ok() {
-  test -d /var/db/mysql/mysql/.
+   test -d /var/db/mysql/mysql/.
 }
 
 gen_update_dbpass() {
@@ -25,6 +32,8 @@ prepare-db() {
 
    service mysql-server start
 
+   wait_db_ready
+
    gen_update_dbpass "$SEAFILE_MYSQL_PASS" >/tmp/update_db.sql
 
    if [ -f /root/.mysql_secret ]; then
@@ -36,7 +45,7 @@ prepare-db() {
    mysql -u root --password="$mysql_root_pass" --connect-expired-password < /tmp/update_db.sql 
 }
 
-if db_ok ; then
+if ! db_ok ; then
    prepare-db
 fi
 

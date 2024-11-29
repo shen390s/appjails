@@ -15,12 +15,12 @@ RUN prepare-db
 
 RUN seafile-prepare
 
-SERVICE mysql-server start
+# SERVICE mysql-server start
 
 SYSRC seafile_enable=YES
 
-SERVICE seafile start
+# SERVICE seafile start
 
 SYSRC seahub_enable=YES
 
-SERVICE seahub start
+# SERVICE seahub start
