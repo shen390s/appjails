@@ -4,7 +4,7 @@ ARG proxy_tag=14.1
 
 FROM --ajspec proxy/.ajspec --entrypoint gh+shen390s/appjails proxy:${proxy_tag}
 
-CMD pw rshenadd -n rshen -d /home/rshen -u 1116 -g staff -m
+CMD pw useradd -n rshen -d /home/rshen -u 1116 -g staff -m
 
 SYSRC socks5_enable=YES
 SYSRC socks5_localPort="*:9990"
