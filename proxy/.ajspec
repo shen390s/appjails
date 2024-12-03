@@ -1,0 +1,7 @@
+tags: 14.1
+14.1.arch: amd64
+14.1.name: "proxy"
+14.1.timestamp.amd64: 1733199157
+14.1.sum.amd64: 1e4a056570b61d6588b52e33d21d91195575b86a8ade6f84996d4656792ea1e8
+14.1.size.amd64: 60437528
+14.1.source.amd64: "http://172.16.1.29/AppJail-images/proxy/14.1-amd64-image.appjail"
