@@ -1,0 +1,41 @@
+#!/bin/sh
+
+# PROVIDE: socks5
+# REQUIRE: LOGIN cleanvar
+# KEYWORD: shutdown
+
+. /etc/rc.subr
+
+name=socks5
+rcvar=socks5_enable
+
+load_rc_config socks5
+
+: ${socks5_pidfile:=/var/run/socks5.pid}
+: ${socks5_localPort:=9990}
+: ${socks5_user:=rshen}
+: ${socks5_remoteUser:=rshen}
+: ${socks5_remoteHost:=login.bsdnas.myddns.com}
+: ${socks5_sshPort:=22}
+
+daemon=/usr/sbin/daemon
+
+su=/usr/bin/su
+
+ssh=/usr/bin/ssh
+pidfile=${socks5_pidfile}
+procname=${ssh}
+
+start_cmd="socks5_START"
+checkservice_cmd="socks5_CHECKSERVICE"
+
+extra_commands="checkservice "
+socks5_START(){
+  ${daemon}   -f   -u ${socks5_user}  -p ${pidfile}  ${ssh}   -D ${socks5_localPort}  -p ${socks5_sshPort}    -o ExitOnForwardFailure=yes -o ServerAliveInterval=60 -o ServerAliveCountMax=3   -N ${socks5_remoteUser}@${socks5_remoteHost} 
+}
+
+socks5_CHECKSERVICE(){
+ echo ok
+}
+
+run_rc_command "$@"

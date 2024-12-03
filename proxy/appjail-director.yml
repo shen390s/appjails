@@ -1,0 +1,21 @@
+options:
+  - virtualnet: ':proxy default'
+  - mount_devfs:
+
+services:
+  proxy:
+    makejail: Makejail
+    name: proxy
+    options:
+      - nat:
+      - expose: 8118
+    arguments:
+      - proxy_tag: 14.1
+
+    volumes:
+      - user-home: user-home
+
+volumes:
+  rshen-home:
+    device: /data/jails/proxy/rshen
+    type: <volumefs>

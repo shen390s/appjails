@@ -1,0 +1,27 @@
+{+forward-override{forward-socks5 localhost:9990 .} \
+}
+.netmaker.io
+.cursor.com
+.gmail.com
+.readthedocs.io
+.haproxy.org
+.reddit.com
+.lisp.se
+.wikibooks.org
+.t.me
+.google*.com
+.stackexchange.com
+.twitter.com
+.dynu.com
+.proxmox.com
+huggingface.co
+.githubusercontent.com
+.bootstrapcdn.com
+.winehq.org
+.youtube.com
+.freebsd.org
+.google.com
+.docker.com
+.github.com
+{}
+
