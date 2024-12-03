@@ -7,6 +7,9 @@ FROM --ajspec proxy/.ajspec --entrypoint gh+shen390s/appjails proxy:${proxy_tag}
 CMD pw useradd -n rshen -d /home/rshen -u 1116 -g staff -m
 
 COPY usr
+
+CMD chown -Rf privoxy:privoxy /usr/local/etc/privoxy
+
 SYSRC socks5_enable=YES
 SYSRC socks5_localPort="*:9990"
 SYSRC socks5_remoteHost="node73s-221.vps.dynuhosting.com"

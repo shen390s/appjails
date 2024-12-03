@@ -17,5 +17,5 @@ services:
 
 volumes:
   home:
-    device: /data/jails/proxy/home/rshen
+    device: /data/jails/proxy/home
     type: <volumefs>
