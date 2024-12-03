@@ -13,9 +13,9 @@ services:
       - proxy_tag: 14.1
 
     volumes:
-      - user-home: user-home
+      - home: home
 
 volumes:
-  user-home:
-    device: /data/jails/proxy/rshen
+  home:
+    device: /data/jails/proxy/home/rshen
     type: <volumefs>

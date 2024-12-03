@@ -1,1 +1,1 @@
-OPTION volume=user-home mountpoint:/home/user 
+OPTION volume=home mountpoint:/home 
